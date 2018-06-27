@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//复活见Destory()
+//true为可复活
+//
 public class Tank : MonoBehaviour
 {
 
@@ -14,15 +17,25 @@ public class Tank : MonoBehaviour
     [Header("开火点")]
     public Transform firePos;
 
-	void Start()
+    public int CurrentHP { get; set; }
+    public int CurrentLife { get; set; }
+
+    void Start()
     {
         tankData = gameObject.GetComponent<TankData>();
+        CurrentHP = tankData.HP;
+        CurrentLife = tankData.Life;
 	}
 
 	void Update()
     {
         TankMove();
         FireRot(rotPos,tankPos);
+        Fire();
+        if (tankData.HP <= 0)
+        {
+            Destroy();
+        }
 	}
 
     void TankMove()
@@ -51,11 +64,29 @@ public class Tank : MonoBehaviour
         timer += Time.deltaTime;
         if (Input.GetKey("r") && timer >= tankData.FireRate)
         {
-            //GameObject bullet = Resources.Load<GameObject>(gameObject.name + "Bullet");
+            GameObject bullet = Resources.Load<GameObject>(gameObject.name + "Bullet");
+            bullet.GetComponent<Bullet>().PlayerNO = tankData.PlayerNO;
+            Instantiate(bullet, firePos.position, firePos.rotation);
             //GameObject fire = Resources.Load<GameObject>("Fire");
+            //Instantiate(fire, firePos.position, firePos.rotation);
             //Destroy(fire, 2f);
-            
+            timer = 0;
         }
+    }
+
+    public bool Destroy()
+    {
+        //GameObject boom = Resources.Load<GameObject>("TankBoom");
+        //Instantiate(boom,transform.position,transform.rotation);
+        //Destroy(boom, 2);
+        tankData.Life -= 1;
+        Destroy(gameObject);
+        if (tankData.Life > 0)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 
 }

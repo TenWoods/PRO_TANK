@@ -5,14 +5,24 @@ using UnityEngine;
 public enum TankType
 {
 
-    JuniorTank1,
-    SeniorTank1,
-    JuniorTank2,
-    SeniorTank2,
+    JuniorTank,
+    SeniorTank,
+
+}
+
+public enum Player
+{
+    Player1,
+    Player2,
 }
 
 
 public class TankData : MonoBehaviour {
+
+    [SerializeField]
+    [Header("坦克生命")]
+    [Range(1,10)]
+    private int life;
 
     [SerializeField]
     [Header("坦克血量")]
@@ -42,6 +52,22 @@ public class TankData : MonoBehaviour {
     [Header("坦克射速")]
     [Range(0,1)]
     private float fireRate;
+
+    [SerializeField]
+    [Header("玩家")]
+    private Player playerNO;
+
+    public int Life
+    {
+        get
+        {
+            return life;
+        }
+        set
+        {
+            life = value;
+        }
+    }
 
     public int HP
     {
@@ -115,5 +141,16 @@ public class TankData : MonoBehaviour {
         }
     }
 
+    public Player PlayerNO
+    {
+        get
+        {
+            return playerNO;
+        }
+        set
+        {
+            playerNO = value;
+        }
+    }
 
 }
