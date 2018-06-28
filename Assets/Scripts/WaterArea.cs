@@ -11,15 +11,16 @@ public class WaterArea : MonoBehaviour
         tanks = new List<GameObject>();
     }
 
+    //坦克减速
     private void SpeedDown(GameObject tank)
     {
-        
-        //TODO:坦克减速
+        tank.GetComponent<TankData>().Speed /= 2;
     }
 
+    //坦克速度恢复
     private void SpeedReturn(GameObject tank)
     {
-        //TODO:坦克速度恢复
+        tank.GetComponent<TankData>().Speed *= 2;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -20,11 +20,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4088240026005332}
   - component: {fileID: 212408518537398534}
-  - component: {fileID: 114389821649158582}
-  - component: {fileID: 114645761790704208}
+  - component: {fileID: 61517270556213728}
+  - component: {fileID: 114875870360036506}
+  - component: {fileID: 114808663583743302}
   m_Layer: 0
   m_Name: TankMax1
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021853585652942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.846, y: -0.54271674, z: -0.093322195}
+  m_LocalPosition: {x: 3.66, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4804125261691210}
@@ -130,7 +131,32 @@ Transform:
   m_Father: {fileID: 4088240026005332}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114389821649158582
+--- !u!61 &61517270556213728
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021853585652942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0023915768, y: 0.01793605}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6, y: 0.68}
+    newSize: {x: 0.6, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5760851, y: 0.5962981}
+  m_EdgeRadius: 0
+--- !u!114 &114808663583743302
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -138,13 +164,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1021853585652942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 462650f86310c3b43a7c903a14eb40b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 87cbf47574b1ae340ba61afdc00d78c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotPos: {fileID: 4804125261691210}
-  tankPos: {fileID: 4847408295836582}
-  firePos: {fileID: 4224295673275972}
---- !u!114 &114645761790704208
+  rotPos: {fileID: 0}
+  tankPos: {fileID: 0}
+  firePos: {fileID: 0}
+--- !u!114 &114875870360036506
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -152,15 +178,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1021853585652942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 756485c0678c4c94e8f00dbefaa0d875, type: 3}
+  m_Script: {fileID: 11500000, guid: 0182e0c6a3cf601499f8ff18ccfda1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 326
-  speed: 2.67
-  rotSpeed: 20.7
-  fireRotSpeed: 19
+  life: 0
+  hp: 0
+  speed: 0
+  rotSpeed: 0
+  fireRotSpeed: 0
   type: 0
-  fireRate: 0.42
+  fireRate: 0
+  playerNO: 0
 --- !u!212 &212009160366452882
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -174,6 +202,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -203,7 +232,7 @@ SpriteRenderer:
   m_Size: {x: 0.38, y: 0.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212408518537398534
 SpriteRenderer:
@@ -218,6 +247,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -247,5 +277,5 @@ SpriteRenderer:
   m_Size: {x: 0.6, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0

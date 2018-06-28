@@ -6,6 +6,7 @@ public class MapManager : MonoBehaviour
 {
     public GameObject flag_Prefab;
     public Transform[] flag_Spawn_Point;
+    public Transform[] respawn_Point;
     public float flag_Set_Time;
     private float flag_timer;
 
@@ -31,4 +32,9 @@ public class MapManager : MonoBehaviour
         GameObject.Instantiate(flag_Prefab, flag_Spawn_Point[spawnIndex].position, flag_Spawn_Point[spawnIndex].rotation);
     }
 
+    public Vector3 GetRespawnPoint()
+    {
+        int randIndex = Random.Range(0, 3);
+        return respawn_Point[randIndex].position;
+    }
 }

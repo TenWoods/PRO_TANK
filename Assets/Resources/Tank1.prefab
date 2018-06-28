@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4866158719626432}
   - component: {fileID: 212777319911931450}
-  - component: {fileID: 114890712347910200}
+  - component: {fileID: 114907600887632464}
+  - component: {fileID: 114567772497605680}
   m_Layer: 0
   m_Name: Tank1
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +101,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114890712347910200
+--- !u!114 &114567772497605680
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -108,15 +109,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1304435514943050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 756485c0678c4c94e8f00dbefaa0d875, type: 3}
+  m_Script: {fileID: 11500000, guid: 0182e0c6a3cf601499f8ff18ccfda1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
   hp: 0
   speed: 0
   rotSpeed: 0
   fireRotSpeed: 0
   type: 0
   fireRate: 0
+  playerNO: 0
+--- !u!114 &114907600887632464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304435514943050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cbf47574b1ae340ba61afdc00d78c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotPos: {fileID: 0}
+  tankPos: {fileID: 0}
+  firePos: {fileID: 0}
 --- !u!212 &212699765081020386
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -130,6 +147,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -159,7 +177,7 @@ SpriteRenderer:
   m_Size: {x: 0.38, y: 0.67}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212777319911931450
 SpriteRenderer:
@@ -174,6 +192,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -203,5 +222,5 @@ SpriteRenderer:
   m_Size: {x: 0.6, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
