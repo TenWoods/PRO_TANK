@@ -57,6 +57,11 @@ public class TankData : MonoBehaviour {
     [Header("玩家")]
     private Player playerNO;
 
+    [SerializeField]
+    [Header("高强子弹个数")]
+    [Range(2, 5)]
+    private int bigBullet;
+
     public int Life
     {
         get
@@ -151,6 +156,28 @@ public class TankData : MonoBehaviour {
         {
             playerNO = value;
         }
+    }
+
+    public int BigBullet
+    {
+        get
+        {
+            return bigBullet;
+        }
+        set
+        {
+            bigBullet = value;
+        }
+    }
+
+    public void JuniorTankData()
+    {
+
+    }
+
+    public void SeniorTankData()
+    {
+
     }
 
 }

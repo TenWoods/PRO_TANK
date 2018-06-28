@@ -19,29 +19,70 @@ public class Tank : MonoBehaviour
 
     public int CurrentHP { get; set; }
     public int CurrentLife { get; set; }
+    public int CurrentBigBullet { get; set; }
+    bool isAlive = true;
 
     void Start()
     {
         tankData = gameObject.GetComponent<TankData>();
         CurrentHP = tankData.HP;
         CurrentLife = tankData.Life;
+        CurrentBigBullet = 1;
 	}
 
+    //复活计时器
+    float reviveTimer = 0;
+
+    //
+    float bigBulletTimer = 0;
+    //TODO复活点
 	void Update()
     {
         TankMove();
         FireRot(rotPos,tankPos);
         Fire();
-        if (tankData.HP <= 0)
+        if(CurrentBigBullet < tankData.BigBullet)
+        {
+            bigBulletTimer += Time.deltaTime;
+            if(bigBulletTimer >= 10)
+            {
+                CurrentBigBullet++;
+                bigBulletTimer = 0;
+            }
+        }
+        if (CurrentHP <= 0)
         {
             Destroy();
+            isAlive = false;
         }
+        if(!isAlive)
+        {
+            reviveTimer += Time.deltaTime;
+            if(reviveTimer >= 5f)
+            {
+                isAlive = true;
+                transform.position = new Vector3(0,0,0);//复活点
+                CurrentHP = tankData.HP;
+                gameObject.SetActive(true);
+            }
+        }
+        if (Input.GetKey("u")) Upgrade();
+        if (Input.GetKey("i")) Downgrade();
 	}
 
     void TankMove()
     {
-        float rot = Input.GetAxis("Horizontal") * tankData.RotSpeed * Time.deltaTime;
-        float speed = Input.GetAxis("Vertical") * tankData.Speed * Time.deltaTime;
+        float rot, speed;
+        if (tankData.PlayerNO == Player.Player1)
+        {
+            rot = Input.GetAxis("Horizontal1") * tankData.RotSpeed * Time.deltaTime;
+            speed = Input.GetAxis("Vertical1") * tankData.Speed * Time.deltaTime;
+        }
+        else
+        {
+            rot = Input.GetAxis("Horizontal2") * tankData.RotSpeed * Time.deltaTime;
+            speed = Input.GetAxis("Vertical2") * tankData.Speed * Time.deltaTime;
+        }
         transform.Translate(Vector3.up * speed);
         transform.RotateAround(transform.position, new Vector3(0, 0, -1), rot);
     }
@@ -51,42 +92,134 @@ public class Tank : MonoBehaviour
     //rotPos  炮管
     void FireRot(Transform rotPosition, Transform rotPos)
     {
-        
-        if (Input.GetKey("e"))
-            rotPos.RotateAround(rotPosition.position, new Vector3(0, 0, -1), tankData.RotSpeed * Time.deltaTime);
-        else if (Input.GetKey("q"))
-            rotPos.RotateAround(rotPosition.position, new Vector3(0, 0, 1), tankData.RotSpeed * Time.deltaTime);
+        if (tankData.PlayerNO == Player.Player1)
+        {
+            rotPos.RotateAround(rotPosition.position, new Vector3(0, 0, -1), Input.GetAxis("Rotation1") * tankData.RotSpeed * Time.deltaTime);
+        }
+        else
+        {
+            rotPos.RotateAround(rotPosition.position, new Vector3(0, 0, -1), Input.GetAxis("Rotation2") * tankData.RotSpeed * Time.deltaTime);
+            
+        }
+            
     }
 
-    float timer = 0;
+    //开火计时器
+    float fireTimer = 0;
     void Fire()
     {
-        timer += Time.deltaTime;
-        if (Input.GetKey("r") && timer >= tankData.FireRate)
+        fireTimer += Time.deltaTime;
+        if (fireTimer >= tankData.FireRate)
         {
-            GameObject bullet = Resources.Load<GameObject>(gameObject.name + "Bullet");
-            bullet.GetComponent<Bullet>().PlayerNO = tankData.PlayerNO;
-            Instantiate(bullet, firePos.position, firePos.rotation);
-            //GameObject fire = Resources.Load<GameObject>("Fire");
-            //Instantiate(fire, firePos.position, firePos.rotation);
-            //Destroy(fire, 2f);
-            timer = 0;
+            if (tankData.PlayerNO == Player.Player1)
+            {
+                if (Input.GetAxis("Fire11") > 0 || (Input.GetAxis("Fire12") > 0 && CurrentBigBullet > 0))
+                {
+                    fireTimer = 0;
+                    GameObject bullet;
+                    if (tankData.Type == TankType.JuniorTank)
+                    {
+                        bullet = Resources.Load<GameObject>("Player1Bullet");
+                    }
+                    else
+                    {
+                        bullet = Resources.Load<GameObject>("Player1MaxBullet");
+                    }
+                    bullet.GetComponent<Bullet>().PlayerNO = tankData.PlayerNO;
+                    bullet = Instantiate(bullet, firePos.position, firePos.rotation);
+                    if (Input.GetAxis("Fire12") > 0)
+                    {
+                        bullet.transform.localScale = new Vector3(2, 2, 2);
+                        bullet.GetComponent<Bullet>().IsMax = true;
+                        CurrentBigBullet--;
+                    }
+                    //GameObject fire = Resources.Load<GameObject>("Fire");
+                    //Instantiate(fire, firePos.position, firePos.rotation);
+                    //Destroy(fire, 2f); 
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Fire21") > 0 || (Input.GetAxis("Fire22") > 0 && CurrentBigBullet > 0))
+                {
+                    fireTimer = 0;
+                    GameObject bullet;
+                    if (tankData.Type == TankType.JuniorTank)
+                    {
+                        bullet = Resources.Load<GameObject>("Player2Bullet");
+                    }
+                    else
+                    {
+                        bullet = Resources.Load<GameObject>("Player2MaxBullet");
+                    }
+                    bullet.GetComponent<Bullet>().PlayerNO = tankData.PlayerNO;
+                    bullet = Instantiate(bullet, firePos.position, firePos.rotation);
+                    if (Input.GetAxis("Fire22") > 0)
+                    {
+                        bullet.transform.localScale = new Vector3(2, 2, 2);
+                        bullet.GetComponent<Bullet>().IsMax = true;
+                        CurrentBigBullet--;
+                    }
+                    //GameObject fire = Resources.Load<GameObject>("Fire");
+                    //Instantiate(fire, firePos.position, firePos.rotation);
+                    //Destroy(fire, 2f); 
+                }
+            }                    
         }
     }
 
-    public bool Destroy()
+    void Destroy()
     {
         //GameObject boom = Resources.Load<GameObject>("TankBoom");
         //Instantiate(boom,transform.position,transform.rotation);
         //Destroy(boom, 2);
         tankData.Life -= 1;
-        Destroy(gameObject);
-        if (tankData.Life > 0)
+        gameObject.SetActive(false);
+        isAlive = false;
+        if (tankData.Life <= 0)
         {
-            return true;
+            GameManager.instance.GameOver();
+        }        
+    }
+
+    //升级
+    public void Upgrade()
+    {
+        if(tankData.PlayerNO == Player.Player1)
+        {
+            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player1Max");
+            tankPos.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player1MaxTank");
         }
-        else
-            return false;
+        else if(tankData.PlayerNO == Player.Player2)
+        {
+            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player2Max");
+            tankPos.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player2Max");
+        }
+        tankData.Type = TankType.SeniorTank;
+        CurrentHP = tankData.HP;
+        tankData.SeniorTankData();       
+    }
+
+    //降级
+    public void Downgrade()
+    {
+        if (tankData.PlayerNO == Player.Player1)
+        {
+            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player1");
+            tankPos.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player1Tank");
+
+        }
+        else if (tankData.PlayerNO == Player.Player2)
+        {
+            GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player2");
+            tankPos.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player2Tank");
+        }
+        tankData.Type = TankType.JuniorTank;
+        if (CurrentHP > tankData.HP)
+        {
+            CurrentHP = tankData.HP;
+        }
+        tankData.JuniorTankData();
     }
 
 }

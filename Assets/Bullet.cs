@@ -18,10 +18,8 @@ public class Bullet : MonoBehaviour {
     [Header("玩家")]
     private Player playerNO;
 
-    private bool isMax;
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         Destroy(gameObject, 15);
 	}
 	
@@ -40,6 +38,10 @@ public class Bullet : MonoBehaviour {
         if(collision.tag == "Tank" && collision.GetComponent<TankData>().PlayerNO != PlayerNO)
         {
             collision.GetComponent<Tank>().CurrentHP -= hurt;
+            if(IsMax)
+            {
+                collision.GetComponent<Tank>().CurrentHP -= hurt;
+            }
             //GameObject boom = Resources.Load<GameObject>("Boom");
             //Instantiate(boom, transform.position, transform.rotation);
             //Destroy(boom, 2);
@@ -65,4 +67,7 @@ public class Bullet : MonoBehaviour {
             playerNO = value;
         }
     }
+
+    public bool IsMax { get; set; }
+
 }
