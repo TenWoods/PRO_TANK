@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+/// <summary>
+/// 无敌道具
+/// </summary>
 public class AddInvincibleProp : MonoBehaviour {
 
     private Vector2 propPos;
@@ -39,7 +42,6 @@ public class AddInvincibleProp : MonoBehaviour {
     {
         if (collision.tag == "Tank")
         {
-            //Use(collision.gameObject.GetComponent<TankData>());
             GetComponent<SpriteRenderer>().sprite = null;
             GetComponent<Collider2D>().enabled = false;
             Use(collision.gameObject.GetComponent<Tank>());
