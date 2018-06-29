@@ -188,12 +188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462650f86310c3b43a7c903a14eb40b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
   rotPos: {fileID: 4041715140100054}
   tankPos: {fileID: 4823386429492648}
   firePos: {fileID: 4974937344354720}
-  revive:
-  - {fileID: 0}
-  - {fileID: 0}
+  revive: []
 --- !u!114 &114751521298463426
 MonoBehaviour:
   m_ObjectHideFlags: 1

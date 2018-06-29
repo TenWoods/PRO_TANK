@@ -7,6 +7,9 @@ public class Tank : MonoBehaviour
     //本坦克数据
     private TankData tankData;
 
+    [Header("【坦克是否无敌的判断】")]
+    public bool isInvincible=false;
+
     [Header("炮管旋转点")]//炮管的中心点
     public Transform rotPos;
     [Header("炮管位置")]//gameobject的位置

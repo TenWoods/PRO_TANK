@@ -37,15 +37,19 @@ public class Bullet : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Tank" && collision.gameObject.GetComponent<TankData>().PlayerNO != PlayerNO)
         {
-            collision.gameObject.GetComponent<Tank>().CurrentHP -= hurt;
-            if (IsMax)
+            if (collision.gameObject.GetComponent<Tank>().isInvincible == false)
             {
                 collision.gameObject.GetComponent<Tank>().CurrentHP -= hurt;
+                if (IsMax)
+                {
+                    collision.gameObject.GetComponent<Tank>().CurrentHP -= hurt;
+                }
+                GameObject boom = Resources.Load<GameObject>("Boom");
+                boom = Instantiate(boom, transform.position, transform.rotation);
+                Destroy(boom, 2);
+                Destroy(gameObject);
             }
-            GameObject boom = Resources.Load<GameObject>("Boom");
-            boom = Instantiate(boom, transform.position, transform.rotation);
-            Destroy(boom, 2);
-            Destroy(gameObject);
+            
         }
         if (collision.gameObject.tag == "障碍物")
         {
