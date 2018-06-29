@@ -24,8 +24,8 @@ public class FlagBuff : MonoBehaviour
 		timer += Time.deltaTime;
         if (timer > get_buff_time)
         {
-            TankData data = tank.GetComponent<TankData>();
-            //TODO:坦克变化
+            Tank data = tank.GetComponent<Tank>();
+            data.Upgrade();
             Destroy(this.gameObject);
         }
 	}

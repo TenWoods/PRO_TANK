@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//复活见Destory()
-//true为可复活
-//
 public class Tank : MonoBehaviour
 {
-
+    //本坦克数据
     private TankData tankData;
 
-    [Header("炮管旋转点")]
+    [Header("炮管旋转点")]//炮管的中心点
     public Transform rotPos;
-    [Header("炮管位置")]
+    [Header("炮管位置")]//gameobject的位置
     public Transform tankPos;
-    [Header("开火点")]
+    [Header("开火点")]//炮管口
     public Transform firePos;
+
+    public Transform[] revive;
 
     public int CurrentHP { get; set; }
     public int CurrentLife { get; set; }
@@ -31,16 +30,21 @@ public class Tank : MonoBehaviour
 	}
 
     //复活计时器
-    float reviveTimer = 0;
+    private float reviveTimer = 0;
 
-    //
-    float bigBulletTimer = 0;
+    //超强火力计时器
+    private float bigBulletTimer = 0;
+
+    //开火计时器
+    float fireTimer = 0;
+
     //TODO复活点
-	void Update()
+    void Update()
     {
         TankMove();
         FireRot(rotPos,tankPos);
         Fire();
+        //获得大子弹
         if(CurrentBigBullet < tankData.BigBullet)
         {
             bigBulletTimer += Time.deltaTime;
@@ -50,24 +54,24 @@ public class Tank : MonoBehaviour
                 bigBulletTimer = 0;
             }
         }
+        //死亡
         if (CurrentHP <= 0)
         {
             Destroy();
             isAlive = false;
         }
-        if(!isAlive)
+        //复活
+        if (!isAlive)
         {
             reviveTimer += Time.deltaTime;
             if(reviveTimer >= 5f)
             {
                 isAlive = true;
-                transform.position = new Vector3(0,0,0);//复活点
+                transform.position = revive[Random.Range(0, revive.Length)].position;//复活点
                 CurrentHP = tankData.HP;
                 gameObject.SetActive(true);
             }
         }
-        if (Input.GetKey("u")) Upgrade();
-        if (Input.GetKey("i")) Downgrade();
 	}
 
     void TankMove()
@@ -104,11 +108,10 @@ public class Tank : MonoBehaviour
             
     }
 
-    //开火计时器
-    float fireTimer = 0;
     void Fire()
     {
         fireTimer += Time.deltaTime;
+        
         if (fireTimer >= tankData.FireRate)
         {
             if (tankData.PlayerNO == Player.Player1)
@@ -127,15 +130,16 @@ public class Tank : MonoBehaviour
                     }
                     bullet.GetComponent<Bullet>().PlayerNO = tankData.PlayerNO;
                     bullet = Instantiate(bullet, firePos.position, firePos.rotation);
+
                     if (Input.GetAxis("Fire12") > 0)
                     {
                         bullet.transform.localScale = new Vector3(2, 2, 2);
                         bullet.GetComponent<Bullet>().IsMax = true;
                         CurrentBigBullet--;
                     }
-                    //GameObject fire = Resources.Load<GameObject>("Fire");
-                    //Instantiate(fire, firePos.position, firePos.rotation);
-                    //Destroy(fire, 2f); 
+                    GameObject fire = Resources.Load<GameObject>("Fire");
+                    fire = Instantiate(fire, firePos.position, firePos.rotation);
+                    Destroy(fire, 3);
                 }
             }
             else
@@ -160,19 +164,19 @@ public class Tank : MonoBehaviour
                         bullet.GetComponent<Bullet>().IsMax = true;
                         CurrentBigBullet--;
                     }
-                    //GameObject fire = Resources.Load<GameObject>("Fire");
-                    //Instantiate(fire, firePos.position, firePos.rotation);
-                    //Destroy(fire, 2f); 
-                }
-            }                    
+                    GameObject fire = Resources.Load<GameObject>("Fire");
+                    fire = Instantiate(fire, firePos.position, firePos.rotation);
+                    Destroy(fire, 3);
+                }             
+            }          
         }
     }
 
     void Destroy()
     {
-        //GameObject boom = Resources.Load<GameObject>("TankBoom");
-        //Instantiate(boom,transform.position,transform.rotation);
-        //Destroy(boom, 2);
+        GameObject boom = Resources.Load<GameObject>("TankBoom");
+        boom = Instantiate(boom,transform.position,transform.rotation);
+        Destroy(boom, 2);
         tankData.Life -= 1;
         gameObject.SetActive(false);
         isAlive = false;

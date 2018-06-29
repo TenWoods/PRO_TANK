@@ -34,7 +34,7 @@ public class MagmaArea : MonoBehaviour
     //坦克掉血
     private void DebuffEffect(GameObject tank)
 	{
-        tank.GetComponent<TankData>().HP -= damage;
+        tank.GetComponent<Tank>().CurrentHP -= damage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

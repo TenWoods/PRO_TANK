@@ -69,9 +69,10 @@ GameObject:
   - component: {fileID: 114092556800275140}
   - component: {fileID: 114751521298463426}
   - component: {fileID: 61280545995685232}
+  - component: {fileID: 50694886218274738}
   m_Layer: 0
   m_Name: TankMax1
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +132,26 @@ Transform:
   m_Father: {fileID: 4823386429492648}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50694886218274738
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979762365960116}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61280545995685232
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -140,7 +161,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0023915768, y: 0.01793605}
@@ -170,6 +191,9 @@ MonoBehaviour:
   rotPos: {fileID: 4041715140100054}
   tankPos: {fileID: 4823386429492648}
   firePos: {fileID: 4974937344354720}
+  revive:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114751521298463426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,15 +205,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756485c0678c4c94e8f00dbefaa0d875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
+  life: 4
   hp: 326
   speed: 2.67
   rotSpeed: 20.7
   fireRotSpeed: 19
-  type: 0
+  type: 1
   fireRate: 0.42
-  playerNO: 1
-  bigBullet: 0
+  playerNO: 0
+  bigBullet: 4
 --- !u!212 &212017810228557166
 SpriteRenderer:
   m_ObjectHideFlags: 1

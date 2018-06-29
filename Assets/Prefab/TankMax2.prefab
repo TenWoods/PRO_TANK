@@ -27,6 +27,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1298878766795864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4167945729545520}
+  m_Layer: 0
+  m_Name: RotPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1539299895977988
 GameObject:
   m_ObjectHideFlags: 1
@@ -53,9 +68,11 @@ GameObject:
   - component: {fileID: 212565304268819412}
   - component: {fileID: 114344436086621914}
   - component: {fileID: 61113042008071064}
+  - component: {fileID: 114036875251380560}
+  - component: {fileID: 50284324803317800}
   m_Layer: 0
   m_Name: TankMax2
-  m_TagString: Untagged
+  m_TagString: Tank
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,11 +84,25 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1843181918031602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6, y: 0, z: 0}
+  m_LocalPosition: {x: 4.853, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4167945729545520}
   - {fileID: 4774169272212784}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4167945729545520
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298878766795864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4102328615189758}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4329077173498000
@@ -99,8 +130,28 @@ Transform:
   m_Children:
   - {fileID: 4329077173498000}
   m_Father: {fileID: 4102328615189758}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50284324803317800
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843181918031602}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61113042008071064
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -110,7 +161,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0011956692, y: 0.016740382}
@@ -126,6 +177,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.57934475, y: 0.5882555}
   m_EdgeRadius: 0
+--- !u!114 &114036875251380560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843181918031602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462650f86310c3b43a7c903a14eb40b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotPos: {fileID: 4167945729545520}
+  tankPos: {fileID: 4774169272212784}
+  firePos: {fileID: 4329077173498000}
+  revive:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114344436086621914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,15 +205,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756485c0678c4c94e8f00dbefaa0d875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
-  hp: 0
-  speed: 0
-  rotSpeed: 0
-  fireRotSpeed: 0
-  type: 0
-  fireRate: 0
-  playerNO: 0
-  bigBullet: 0
+  life: 3
+  hp: 722
+  speed: 3.61
+  rotSpeed: 24.4
+  fireRotSpeed: 29.8
+  type: 1
+  fireRate: 0.83
+  playerNO: 1
+  bigBullet: 2
 --- !u!212 &212316052317520164
 SpriteRenderer:
   m_ObjectHideFlags: 1

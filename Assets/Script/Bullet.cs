@@ -33,25 +33,25 @@ public class Bullet : MonoBehaviour {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.tag == "Tank" && collision.GetComponent<TankData>().PlayerNO != PlayerNO)
+        if (collision.gameObject.tag == "Tank" && collision.gameObject.GetComponent<TankData>().PlayerNO != PlayerNO)
         {
-            collision.GetComponent<Tank>().CurrentHP -= hurt;
-            if(IsMax)
+            collision.gameObject.GetComponent<Tank>().CurrentHP -= hurt;
+            if (IsMax)
             {
-                collision.GetComponent<Tank>().CurrentHP -= hurt;
+                collision.gameObject.GetComponent<Tank>().CurrentHP -= hurt;
             }
-            //GameObject boom = Resources.Load<GameObject>("Boom");
-            //Instantiate(boom, transform.position, transform.rotation);
-            //Destroy(boom, 2);
+            GameObject boom = Resources.Load<GameObject>("Boom");
+            boom = Instantiate(boom, transform.position, transform.rotation);
+            Destroy(boom, 2);
             Destroy(gameObject);
         }
-        if(collision.tag == "障碍物")
+        if (collision.gameObject.tag == "障碍物")
         {
-            //GameObject boom = Resources.Load<GameObject>("Boom");
-            //Instantiate(boom, transform.position, transform.rotation);
-            //Destroy(boom, 2);
+            GameObject boom = Resources.Load<GameObject>("Boom");
+            boom = Instantiate(boom, transform.position, transform.rotation);
+            Destroy(boom, 2);
             Destroy(gameObject);
         }
     }

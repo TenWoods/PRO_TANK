@@ -20,28 +20,28 @@ public enum Player
 public class TankData : MonoBehaviour {
 
     [SerializeField]
-    [Header("坦克生命")]
+    [Header("玩家生命")]
     [Range(1,10)]
     private int life;
 
     [SerializeField]
     [Header("坦克血量")]
-    [Range(100,500)]
+    [Range(0,2000)]
     private int hp;
 
     [SerializeField]
     [Header("坦克速度")]
-    [Range(0,5)]
+    [Range(0,10)]
     private float speed;
 
     [SerializeField]
     [Header("坦克转速")]
-    [Range(10,50)]
+    [Range(0,90)]
     private float rotSpeed;
 
     [SerializeField]
     [Header("炮管转度")]
-    [Range(10,50)]
+    [Range(0,90)]
     private float fireRotSpeed;
 
     [SerializeField]
@@ -49,8 +49,8 @@ public class TankData : MonoBehaviour {
     private TankType type;
 
     [SerializeField]
-    [Header("坦克射速")]
-    [Range(0,1)]
+    [Header("坦克射速(s)")]
+    [Range(0,3)]
     private float fireRate;
 
     [SerializeField]
@@ -59,7 +59,7 @@ public class TankData : MonoBehaviour {
 
     [SerializeField]
     [Header("高强子弹个数")]
-    [Range(2, 5)]
+    [Range(1, 5)]
     private int bigBullet;
 
     public int Life
@@ -172,12 +172,22 @@ public class TankData : MonoBehaviour {
 
     public void JuniorTankData()
     {
-
+        HP = 1;
+        Speed = 1;
+        RotSpeed = 1;
+        FireRotSpeed = 1;
+        FireRate = 1;
+        BigBullet = 1;
     }
 
     public void SeniorTankData()
     {
-
+        HP = 1;
+        Speed = 1;
+        RotSpeed = 1;
+        FireRotSpeed = 1;
+        FireRate = 1;
+        BigBullet = 1;
     }
 
 }
