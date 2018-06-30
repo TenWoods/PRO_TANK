@@ -24,10 +24,12 @@ public class MagmaArea : MonoBehaviour
             if (timers[i] < damage_time)
             {
                 timers[i] += Time.deltaTime;
-                continue;
             }
-            DebuffEffect(tanks[i]);
-            timers[i] = 0;
+            else
+            {
+                DebuffEffect(tanks[i]);
+                timers[i] = 0;
+            }
         }
 	}
 

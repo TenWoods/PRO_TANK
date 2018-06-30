@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Destroy(gameObject, 15);
+        Destroy(gameObject, 10);
 	}
 	
 	// Update is called once per frame
@@ -32,6 +32,33 @@ public class Bullet : MonoBehaviour {
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Tank" && collision.gameObject.GetComponent<TankData>().PlayerNO != PlayerNO)
+    //    {
+    //        if (collision.gameObject.GetComponent<Tank>().isInvincible == false)
+    //        {
+    //            collision.gameObject.GetComponent<Tank>().CurrentHP -= hurt;
+    //            if (IsMax)
+    //            {
+    //                collision.gameObject.GetComponent<Tank>().CurrentHP -= hurt;
+    //            }
+    //            GameObject boom = Resources.Load<GameObject>("Boom");
+    //            boom = Instantiate(boom, transform.position, transform.rotation);
+    //            Destroy(boom, 2);
+    //            Destroy(gameObject);
+    //        }
+
+    //    }
+    //    if (collision.gameObject.tag == "障碍物")
+    //    {
+    //        GameObject boom = Resources.Load<GameObject>("Boom");
+    //        boom = Instantiate(boom, transform.position, transform.rotation);
+    //        Destroy(boom, 2);
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -49,9 +76,9 @@ public class Bullet : MonoBehaviour {
                 Destroy(boom, 2);
                 Destroy(gameObject);
             }
-            
+
         }
-        if (collision.gameObject.tag == "障碍物")
+        if (collision.gameObject.tag == "Block")
         {
             GameObject boom = Resources.Load<GameObject>("Boom");
             boom = Instantiate(boom, transform.position, transform.rotation);

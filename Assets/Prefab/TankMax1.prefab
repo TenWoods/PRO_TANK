@@ -143,7 +143,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -192,7 +192,6 @@ MonoBehaviour:
   rotPos: {fileID: 4041715140100054}
   tankPos: {fileID: 4823386429492648}
   firePos: {fileID: 4974937344354720}
-  revive: []
 --- !u!114 &114751521298463426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,7 +244,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 42369945
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b4f9000babccc1b408aae8c0f82c4f81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -289,7 +288,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 42369945
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b598b92823e584a448ed39b91c7fb6d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

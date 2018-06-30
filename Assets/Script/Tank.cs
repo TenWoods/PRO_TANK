@@ -17,23 +17,22 @@ public class Tank : MonoBehaviour
     [Header("开火点")]//炮管口
     public Transform firePos;
 
-    public Transform[] revive;
+    //public Transform[] revive;
 
     public int CurrentHP { get; set; }
     public int CurrentLife { get; set; }
     public int CurrentBigBullet { get; set; }
-    bool isAlive = true;
+    public bool IsAlive { get; set; }
 
     void Start()
     {
+        IsAlive = true;
         tankData = gameObject.GetComponent<TankData>();
+        Downgrade();
         CurrentHP = tankData.HP;
         CurrentLife = tankData.Life;
         CurrentBigBullet = 1;
 	}
-
-    //复活计时器
-    private float reviveTimer = 0;
 
     //超强火力计时器
     private float bigBulletTimer = 0;
@@ -44,37 +43,28 @@ public class Tank : MonoBehaviour
     //TODO复活点
     void Update()
     {
-        TankMove();
-        FireRot(rotPos,tankPos);
-        Fire();
-        //获得大子弹
-        if(CurrentBigBullet < tankData.BigBullet)
+        if(IsAlive)
         {
-            bigBulletTimer += Time.deltaTime;
-            if(bigBulletTimer >= 10)
+            TankMove();
+            FireRot(rotPos, tankPos);
+            Fire();
+            //获得大子弹
+            if (CurrentBigBullet < tankData.BigBullet)
             {
-                CurrentBigBullet++;
-                bigBulletTimer = 0;
+                bigBulletTimer += Time.deltaTime;
+                if (bigBulletTimer >= 10)
+                {
+                    CurrentBigBullet++;
+                    bigBulletTimer = 0;
+                }
             }
-        }
-        //死亡
-        if (CurrentHP <= 0)
-        {
-            Destroy();
-            isAlive = false;
-        }
-        //复活
-        if (!isAlive)
-        {
-            reviveTimer += Time.deltaTime;
-            if(reviveTimer >= 5f)
+            //死亡
+            if (CurrentHP <= 0)
             {
-                isAlive = true;
-                transform.position = revive[Random.Range(0, revive.Length)].position;//复活点
-                CurrentHP = tankData.HP;
-                gameObject.SetActive(true);
+                Destroy();
+                IsAlive = false;
             }
-        }
+        }     
 	}
 
     void TankMove()
@@ -182,7 +172,7 @@ public class Tank : MonoBehaviour
         Destroy(boom, 2);
         tankData.Life -= 1;
         gameObject.SetActive(false);
-        isAlive = false;
+        IsAlive = false;
         if (tankData.Life <= 0)
         {
             GameManager.instance.GameOver();
@@ -222,11 +212,11 @@ public class Tank : MonoBehaviour
             tankPos.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Player2Tank");
         }
         tankData.Type = TankType.JuniorTank;
+        tankData.JuniorTankData();
         if (CurrentHP > tankData.HP)
         {
             CurrentHP = tankData.HP;
         }
-        tankData.JuniorTankData();
     }
 
 }

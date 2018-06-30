@@ -37,4 +37,12 @@ public class FlagBuff : MonoBehaviour
 			tank = other.gameObject;
 		}
 	}
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "tank")
+        {
+            tank = null;
+        }
+    }
 }

@@ -143,7 +143,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -188,12 +188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462650f86310c3b43a7c903a14eb40b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
   rotPos: {fileID: 4167945729545520}
   tankPos: {fileID: 4774169272212784}
   firePos: {fileID: 4329077173498000}
-  revive:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &114344436086621914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,13 +203,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756485c0678c4c94e8f00dbefaa0d875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 3
-  hp: 722
-  speed: 3.61
-  rotSpeed: 24.4
-  fireRotSpeed: 29.8
+  life: 5
+  hp: 2000
+  speed: 10
+  rotSpeed: 90
+  fireRotSpeed: 90
   type: 1
-  fireRate: 0.83
+  fireRate: 3
   playerNO: 1
   bigBullet: 2
 --- !u!212 &212316052317520164
@@ -246,7 +244,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 42369945
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 568dad8047845f9439ce8e09af16ce64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -290,7 +288,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 42369945
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 17fb4dd6420ad8041b3fd27bc20b878c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

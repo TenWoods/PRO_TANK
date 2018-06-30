@@ -172,21 +172,21 @@ public class TankData : MonoBehaviour {
 
     public void JuniorTankData()
     {
-        HP = 1;
+        HP = 1000;
         Speed = 1;
-        RotSpeed = 1;
-        FireRotSpeed = 1;
+        RotSpeed = 20;
+        FireRotSpeed = 30;
         FireRate = 1;
         BigBullet = 1;
     }
 
     public void SeniorTankData()
     {
-        HP = 1;
-        Speed = 1;
-        RotSpeed = 1;
-        FireRotSpeed = 1;
-        FireRate = 1;
+        HP = 2000;
+        Speed = 2;
+        RotSpeed = 40;
+        FireRotSpeed = 50;
+        FireRate = 0.5f;
         BigBullet = 1;
     }
 

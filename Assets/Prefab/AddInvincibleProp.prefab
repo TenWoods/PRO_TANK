@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114292173111327880}
   m_Layer: 0
   m_Name: AddInvincibleProp
-  m_TagString: Untagged
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cf4f36dbb33b3469027c677c4f10aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffTime: 1
+  buffTime: 15
 --- !u!212 &212198479723047722
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -100,8 +100,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1865060149
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 12672d0c8d3d9e848a37d768446926a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tank
+  - Map
+  - Block
+  - Bullet
+  - Prop
+  - Flag
   layers:
   - Default
   - TransparentFX
@@ -42,6 +47,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Map
+    uniqueID: 1342954445
+    locked: 0
+  - name: Block
+    uniqueID: 1516845295
+    locked: 0
+  - name: Prop
+    uniqueID: 2429907147
+    locked: 0
   - name: Tank
     uniqueID: 42369945
+    locked: 0
+  - name: Bullet
+    uniqueID: 671526949
     locked: 0
