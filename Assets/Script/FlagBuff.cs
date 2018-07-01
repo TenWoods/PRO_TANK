@@ -27,6 +27,7 @@ public class FlagBuff : MonoBehaviour
             Tank data = tank.GetComponent<Tank>();
             data.Upgrade();
             Destroy(this.gameObject);
+            GameManager.instance.useFlag = true;
         }
 	}
 

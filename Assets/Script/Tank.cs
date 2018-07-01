@@ -40,6 +40,9 @@ public class Tank : MonoBehaviour
     //开火计时器
     float fireTimer = 0;
 
+    //降级计时器
+    float downTimer = 0;
+
     //TODO复活点
     void Update()
     {
@@ -63,6 +66,16 @@ public class Tank : MonoBehaviour
             {
                 Destroy();
                 IsAlive = false;
+            }
+            if(tankData.Type == TankType.SeniorTank)
+            {
+                downTimer += Time.deltaTime;
+                if (downTimer >= tankData.BigTime)
+                {
+                    downTimer = 0;
+                    Downgrade();
+                }
+
             }
         }     
 	}

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public GameObject[] tanks;
     public GameObject[] propPlace;
 
+    public Transform flagPos;
+
     [Range(0,5)][SerializeField][Header("坦克复活时间")]
     private float reviveTime;
 
@@ -18,6 +20,14 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     [Header("道具刷新时间")]
     private float refalshTime;
+
+    public bool useFlag = false;
+
+    [Range(0, 20)]
+    [SerializeField]
+    [Header("旗子刷新时间")]
+    private float flagTime;
+    private float flagTimer;
 
     [SerializeField ][Header("是否刷新")]
     private bool isRefalsh = false;
@@ -45,6 +55,10 @@ public class GameManager : MonoBehaviour {
                 StartCoroutine(Revive(tank, revive));
                
             }
+        }
+        if(useFlag)
+        {
+            FlagInit();
         }
     }
 
@@ -118,7 +132,18 @@ public class GameManager : MonoBehaviour {
         yield return RefalshProp();
     }
 
-
+    public void FlagInit()
+    {
+        if (flagTimer <= flagTime)
+        {
+            flagTimer += Time.deltaTime;
+            return;
+        }
+        flagTimer = 0;
+        GameObject flagPrefab = Resources.Load<GameObject>("Flag");
+        flagPrefab = Instantiate(flagPrefab, flagPos.position, flagPos.rotation);
+        flagPrefab.transform.SetParent(GameObject.Find("Map").transform);
+    }
 
 
 }

@@ -62,6 +62,11 @@ public class TankData : MonoBehaviour {
     [Range(1, 5)]
     private int bigBullet;
 
+    [Range(0, 5)]
+    [SerializeField]
+    [Header("大坦克时间")]
+    private float bigTime;
+
     public int Life
     {
         get
@@ -167,6 +172,18 @@ public class TankData : MonoBehaviour {
         set
         {
             bigBullet = value;
+        }
+    }
+
+    public float BigTime
+    {
+        get
+        {
+            return bigTime;
+        }
+        set
+        {
+            bigTime = value;
         }
     }
 

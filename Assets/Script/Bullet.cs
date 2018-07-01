@@ -85,6 +85,10 @@ public class Bullet : MonoBehaviour {
             Destroy(boom, 2);
             Destroy(gameObject);
         }
+        if (collision.gameObject.name == "Edge")
+        {
+            Destroy(gameObject);
+        }
     }
 
     public Player PlayerNO
