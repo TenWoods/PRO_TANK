@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //处理UI及BGM
 public class GameManager : MonoBehaviour {
@@ -32,20 +34,23 @@ public class GameManager : MonoBehaviour {
     [SerializeField ][Header("是否刷新")]
     private bool isRefalsh = false;
 
+    
+
     private void Awake()
     {
         instance = this;
         tanks = GameObject.FindGameObjectsWithTag("Tank");
-       
     }
     private void Start()
     {
         StartCoroutine(RefalshProp());
+        
     }
 
     private void Update()
     {
-        RefalshProp();
+        GetPanel();
+        TankUI();
         foreach (GameObject tank in tanks)
         {
             if(!tank.GetComponent<Tank>().IsAlive)
@@ -144,6 +149,29 @@ public class GameManager : MonoBehaviour {
         flagPrefab = Instantiate(flagPrefab, flagPos.position, flagPos.rotation);
         flagPrefab.transform.SetParent(GameObject.Find("Map").transform);
     }
+
+    //中途暂停的操作
+    private void GetPanel()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            GameObject.Find("Canvas").transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
+
+    public void TankUI()
+    {
+        string tank1Hp = tanks[0].GetComponent<Tank>().CurrentHP.ToString();
+        string tank1BigBullet = tanks[0].GetComponent<Tank>().CurrentBigBullet.ToString();
+        string tank2Hp = tanks[1].GetComponent<Tank>().CurrentHP.ToString();
+        string tank2BigBullet = tanks[1].GetComponent<Tank>().CurrentBigBullet.ToString();
+        GameObject.Find("Canvas").transform.Find("Text1").GetComponent<Text>().text = "tank1生命值"+   tank1Hp+"/1000";
+        GameObject.Find("Canvas").transform.Find("Text2").GetComponent<Text>().text = "tank1高强子弹数" +  tank1BigBullet+"/4";
+        GameObject.Find("Canvas").transform.Find("Text3").GetComponent<Text>().text = "tank2生命值" +   tank2Hp+"/1000";
+        GameObject.Find("Canvas").transform.Find("Text4").GetComponent<Text>().text = "tank2高强子弹数" +   tank2BigBullet+"/4";
+    }
+    
 
 
 }
